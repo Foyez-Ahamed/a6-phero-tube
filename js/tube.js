@@ -5,7 +5,8 @@ const handleVideosCategories = async () => {
     displayVideosCategories(videosCategories);
 };
 
-const displayVideosCategories = videosCategories => {
+
+const displayVideosCategories = (videosCategories) => {
     const categoriesContainer = document.getElementById('categories-container');
 
     videosCategories.forEach(categories => {
@@ -31,38 +32,37 @@ const handleVideosCategory = async (categoryId) => {
 }
 
 
-const displayCategoryVideo = categoryVideo => {
+const displayCategoryVideo = (categoryVideo) => {
+    console.log(categoryVideo);
     const showVideoContainer =  document.getElementById('show-video-container');
 
     showVideoContainer.textContent = "";
 
     categoryVideo.forEach(showVideos => {
-        console.log(showVideos);
+        // console.log(showVideos);
 
         const showVideosDiv = document.createElement("div");
-        showVideosDiv.classList = `card bg-base-100 shadow-xl`;
-
-        // const authorProfile = showVideos.authors[0].profile_picture;
+        showVideosDiv.classList = `card`;
 
         showVideosDiv.innerHTML = `
 
-        <figure><img class = "lg:w-full lg:h-[170px]" src="${showVideos?.thumbnail}"/></figure>
+        <figure> <img class = "lg:w-full lg:h-[170px]" src="${showVideos?.thumbnail}"/> <span class = "absolute bg-black text-white rounded-md top-[40%] right-5">${showVideos?.others.posted_date}</span> </figure>
             <div class="p-6">
-              <h2 class ="flex justify-start items-center gap-3">
+              <h2 class ="flex justify-start items-center gap-2">
                <img class = "w-[40px] h-[40px] rounded-full" src = "${showVideos?.authors[0].profile_picture}" />
                 <div class = "text-md font-bold">${showVideos.title}</div>
               </h2>
-              <div class="justify-start mt-3 ml-10">
+              <div class="flex justify-start items-center mt-3 ml-9">
                 <div class="badge ">${showVideos?.authors[0]?.profile_name}</div> 
-                <div class="badge ">${showVideos?.authors[0]?.verified}</div>
+                <div class="badge "> ${showVideos?.authors[0]?.verified ? `<img src="./icons/verified.svg" alt=""></img>` : ''} </div>
               </div>
-              <div class = "mt-3 ml-12">${showVideos.others.views} views</div>
+              <div class = "mt-3 ml-11">${showVideos.others.views} views</div>
             </div>
         
         `
         showVideoContainer.appendChild(showVideosDiv);
     });
-}
+};
 
 
 handleVideosCategories();

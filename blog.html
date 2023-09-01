@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Question Answer</title>
+<!-- tailwind and daisyUI cdn -->
+<link href="https://cdn.jsdelivr.net/npm/daisyui@3.3.1/dist/full.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+   <!-- header section start here -->
+   <header class="max-w-screen-xl mx-auto px-8 md:px-16 lg:px-16 py-5 my-10">
+
+    <h1 class="text-center text-4xl text-red-600 font-bold">Blog Questions Answers Below</h1>
+   </header>
+   <!-- header section end here -->
+
+   <!-- main section start here -->
+   <main class="max-w-screen-xl mx-auto px-8 md:px-16 lg:px-16 py-5 my-10">
+
+    <!-- var let and const -->
+    <div tabindex="0" class="collapse collapse-open border border-base-300 bg-base-200"> 
+        <div class="collapse-title text-2xl font-medium text-red-600">
+            Discuss the scope of var, let, and const
+        </div>
+        <div class="collapse-content">
+            <p>Var let and Const all are used for variable declaration. But their scope is difference. Discuss below about the scope of var let and const </p> <br>
+          <p><span class="text-lg font-bold">Var :</span> Var keyword declares a variable which is scoped to its current execution context, optionally initializing to a value. In JavaScript, all variables defined with the var keyword have an initial value of undefined. This is due to hoisting which puts the variable declarations in memory and initializes them with the value of undefined.
+            </p> <br>
+
+            <p><span class="text-lg font-bold">Let :</span>
+                Let keyword declares a block scoped variable, optionally initializing it to a value.Variables defined with let keywords when hoisted are not initialized with a value of undefined. Let are in a state called the Temporal Dead Zone and are not initialized until it definitions are evaluated.
+            </p> <br>
+
+            <p><span class="text-lg font-bold">Const :</span>
+                Const keyword declares constants which are block scoped much like variables defined using let but the value of a constant cannot change. The const declaration creates a read-only reference to a value.Variables defined with const keywords when hoisted are not initialized with a value of undefined. Const are in a state called the Temporal Dead Zone and are not initialized until it definitions are evaluated.
+            </p>
+        </div>
+      </div>
+
+    <!-- null and undefine -->
+    <div tabindex="0" class="collapse collapse-open border border-base-300 bg-base-200 mt-10"> 
+        <div class="collapse-title text-2xl font-medium text-red-600">
+            Tell us the use cases of null and undefined
+        </div>
+        <div class="collapse-content"> 
+          <p>In JavaScript, both null and undefined are special values that are often used to represent missing or nonexistent values, but they have slightly different use cases and meanings. In below we will discuss about null and undefine use cases : </p> <br>
+
+          <p><span class="text-lg font-bold">Null :</span> Null is often explicitly assigned to a variable or property by a programmer to indicate that the variable or property intentionally has no value or that it is empty.It can be used to reset or clear a variable or object property.
+          </p> <br>
+
+          <p><span class="text-lg font-bold">Undefined :</span> When a variable is declared but not initialized, it is automatically assigned the value undefined. This can happen in several situations A variable declared without an initial value.Function parameters that are not provided with arguments.When accessing an object property that does not exist.It is also the default return value of a function that doesn't explicitly return anything.
+          </p> <br>
+          <p>It's important to note that null and undefined are distinct values with different use cases, even though they are both often used to represent the absence of a meaningful value.</p>
+        </div>
+      </div>
+
+      <!-- Rest Api -->
+      <div tabindex="0" class="collapse collapse-open border border-base-300 bg-base-200 mt-10"> 
+        <div class="collapse-title text-2xl font-medium text-red-600">
+            What do you mean by REST API?
+        </div>
+       
+        <div class="collapse-content">
+            <p>
+                REST API stands for Representational State Transfer Application Programming Interface. It is a set of architectural principles and constraints for designing networked applications. REST is not a protocol itself, but rather a set of guidelines and best practices for creating web services that are scalable, maintainable, and easy to understand. REST API are commonly used in web development to enable communication between different software systems over the internet. REST API are commonly used in web applications and services because of their simplicity, scalability, and compatibility with the HTTP protocol, which is the foundation of the World Wide Web. They are used for various purposes, such as retrieving data from a server, creating, updating, or deleting data, and performing various other actions over the internet.
+            </p>
+        </div>
+      </div>
+   </main>
+   <!-- main section end here -->
+</body>
+</html>
