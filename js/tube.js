@@ -17,16 +17,17 @@ const displayVideosCategories = (videosCategories) => {
       
       categoriesDiv.innerHTML = `
 
-      <button onclick = "handleVideosCategory('${categories?.category_id}')" class="px-6 py-2 btn-bg rounded-md font-medium hover:bg-red-500 hover:text-white">${categories?.category}</button>
+      <button onclick = "handleVideosCategory('${categories?.category_id}')" class="px-6 py-2 btn-bg rounded-md font-medium focus:bg-red-500 focus:text-white hover:bg-red-500 hover:text-white">${categories?.category}</button>
       
       `
       categoriesContainer.appendChild(categoriesDiv);
     });
 };
 
+let videosCategory;
 
 const handleVideosCategory = async (categoryId) => {
-    // console.log(categoryId);
+    videosCategory = categoryId;
     const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryId}`);
     const data = await response.json();
     const categoryVideo = data.data;
@@ -48,12 +49,17 @@ const displayCategoryVideo = (categoryVideo) => {
         showVideoContainer.textContent = "";
 
         categoryVideo.forEach(showVideos => {
+          const secondToMin = showVideos.others.posted_date / 60;
+          const minToHour = secondToMin / 60;
+          const finalHours = Math.floor(minToHour);
+          const finalMinute = Math.floor((minToHour - finalHours) * 60 );
+          
           const showVideosDiv = document.createElement("div");
           showVideosDiv.classList = `card`;
   
           showVideosDiv.innerHTML = `
   
-          <figure> <img class = "lg:w-full lg:h-[170px]" src="${showVideos?.thumbnail}"/> <span class = "absolute bg-black text-white rounded-md top-[40%] right-5"></span> </figure>
+          <figure> <img class = "lg:w-full lg:h-[170px]" src="${showVideos?.thumbnail}"/> <span class = "absolute bg-black text-white rounded-lg top-[40%] ${(showVideos.others.posted_date <= 0)? "hidden" : " "} right-5 p-1"> ${(finalHours > 0 && finalMinute > 0)? finalHours + " hrs " + finalMinute + " Minute" : ""} </span> </figure>
               <div class="p-6">
                 <h2 class ="flex justify-start items-center gap-2">
                  <img class = "w-[40px] h-[40px] rounded-full" src = "${showVideos?.authors[0].profile_picture}" />
@@ -70,10 +76,43 @@ const displayCategoryVideo = (categoryVideo) => {
           showVideoContainer.appendChild(showVideosDiv);
       });
 
-        
-    
 };
 
+const sortByViews = async () => {
+  const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${videosCategory}`);
+  const data = await response.json();
+  const sortViews = data.data.sort((a,b) => parseInt(b.others.views) - parseInt(a.others.views))
+  const showVideoContainer =  document.getElementById('show-video-container');
+
+        showVideoContainer.textContent = "";
+
+          sortViews.forEach(showVideos => {
+          const secondToMin = showVideos.others.posted_date / 60;
+          const minToHour = secondToMin / 60;
+          const finalHours = Math.floor(minToHour);
+          const finalMinute = Math.floor((minToHour - finalHours) *60 );
+          const showVideosDiv = document.createElement("div");
+          showVideosDiv.classList = `card`;
+  
+          showVideosDiv.innerHTML = `
+  
+          <figure> <img class = "lg:w-full lg:h-[170px]" src="${showVideos?.thumbnail}"/> <span class = "absolute bg-black text-white rounded-lg top-[40%] ${(showVideos.others.posted_date <= 0)? "hidden" : " "} right-5 p-1"> ${(finalHours > 0 && finalMinute > 0)? finalHours + " hrs " + finalMinute + " Minute" : ""}  </span> </figure>
+              <div class="p-6">
+                <h2 class ="flex justify-start items-center gap-2">
+                 <img class = "w-[40px] h-[40px] rounded-full" src = "${showVideos?.authors[0].profile_picture}" />
+                  <div class = "text-md font-bold">${showVideos.title}</div>
+                </h2>
+                <div class="flex justify-start items-center mt-3 ml-9">
+                  <div class="badge ">${showVideos?.authors[0]?.profile_name}</div> 
+                  <div class="badge "> ${showVideos?.authors[0]?.verified ? `<img src="./icons/verified.svg" alt=""></img>` : ''} </div>
+                </div>
+                <div class = "mt-3 ml-11">${showVideos.others.views} views</div>
+              </div>
+          
+          `
+          showVideoContainer.appendChild(showVideosDiv);
+      });
+}
 
 handleVideosCategories();
 handleVideosCategory("1000");
