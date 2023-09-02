@@ -59,7 +59,7 @@ const displayCategoryVideo = (categoryVideo) => {
   
           showVideosDiv.innerHTML = `
   
-          <figure> <img class = "lg:w-full lg:h-[170px]" src="${showVideos?.thumbnail}"/> <span class = "absolute bg-black text-white rounded-lg top-[40%] ${(showVideos.others.posted_date <= 0)? "hidden" : " "} right-5 p-1"> ${(finalHours > 0 && finalMinute > 0)? finalHours + " hrs " + finalMinute + " Minute" : ""} </span> </figure>
+          <figure> <img class = "lg:w-full lg:h-[170px]" src="${showVideos?.thumbnail}"/> <span class = "absolute bg-neutral-900 text-slate-200 rounded-lg top-[40%] ${(showVideos.others.posted_date <= 0)? "hidden" : " "} right-2 p-1"> ${(finalHours > 0 && finalMinute > 0)? finalHours + " hrs " + finalMinute + " Minute " + "ago" : ""} </span> </figure>
               <div class="p-6">
                 <h2 class ="flex justify-start items-center gap-2">
                  <img class = "w-[40px] h-[40px] rounded-full" src = "${showVideos?.authors[0].profile_picture}" />
@@ -96,7 +96,7 @@ const sortByViews = async () => {
   
           showVideosDiv.innerHTML = `
   
-          <figure> <img class = "lg:w-full lg:h-[170px]" src="${showVideos?.thumbnail}"/> <span class = "absolute bg-black text-white rounded-lg top-[40%] ${(showVideos.others.posted_date <= 0)? "hidden" : " "} right-5 p-1"> ${(finalHours > 0 && finalMinute > 0)? finalHours + " hrs " + finalMinute + " Minute" : ""}  </span> </figure>
+          <figure> <img class = "lg:w-full lg:h-[170px]" src="${showVideos?.thumbnail}"/> <span class = "absolute bg-neutral-900 text-slate-200 rounded-lg top-[40%] ${(showVideos.others.posted_date <= 0)? "hidden" : " "} right-5 p-1"> ${(finalHours > 0 && finalMinute > 0)? finalHours + " hrs " + finalMinute + " Minute " + "ago" : ""}  </span> </figure>
               <div class="p-6">
                 <h2 class ="flex justify-start items-center gap-2">
                  <img class = "w-[40px] h-[40px] rounded-full" src = "${showVideos?.authors[0].profile_picture}" />
