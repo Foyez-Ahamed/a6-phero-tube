@@ -9,3 +9,7 @@ body{
 .primary-btn-bg{
     background: #FF1F3D;
 }
+
+.err-msg-color{
+    color: #171717;
+}
